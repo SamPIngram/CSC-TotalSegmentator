@@ -67,15 +67,7 @@ def download_url_and_unpack(url, config_dir):
 
     try:
         st = time.time()
-        with open(tempfile, 'wb') as f:
-            # session = requests.Session()  # making it slower
-            with requests.get(url, stream=True) as r:
-                r.raise_for_status()
-                for chunk in r.iter_content(chunk_size=8192 * 16):
-                    # If you have chunk encoded response uncomment if
-                    # and set chunk_size parameter to None.
-                    # if chunk:
-                    f.write(chunk)
+        os.system(f"wget {url} -O {tempfile}")
 
         print("Download finished. Extracting...")
         # call(['unzip', '-o', '-d', network_training_output_dir, tempfile])

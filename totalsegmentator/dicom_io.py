@@ -74,7 +74,8 @@ def dcm_to_nifti(input_path, output_path, verbose=False):
         else:
             dcm2niix = config_dir / "dcm2niix"
         if not dcm2niix.exists():
-            download_dcm2niix()
+            #download_dcm2niix()
+            print("dcm2niix not installed!")
 
     subprocess.call(f"\"{dcm2niix}\" -o {output_path.parent} -z y -f {output_path.name[:-7]} {input_path} {verbose_str}", shell=True)
 
@@ -126,3 +127,7 @@ def save_mask_as_rtstruct(img_data, selected_classes, dcm_reference_file, output
             )
 
     rtstruct.save(str(output_path))
+
+
+if __name__ == "__main__":
+    download_dcm2niix()
