@@ -123,7 +123,8 @@ def save_mask_as_rtstruct(img_data, selected_classes, dcm_reference_file, output
             # add segmentation to RT Struct
             rtstruct.add_roi(
                 mask=binary_img,  # has to be a binary numpy array
-                name=class_name
+                name=class_name,
+                approximate_contours=False
             )
 
     rtstruct.save(str(output_path))
